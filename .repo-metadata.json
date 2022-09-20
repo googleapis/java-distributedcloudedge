@@ -1,0 +1,16 @@
+{
+  "api_shortname": "distributedcloudedge",
+  "name_pretty": "Google Distributed Cloud Edge",
+  "product_documentation": "cloud.google.com/distributed-cloud/edge/latest/",
+  "api_description": "provides management of Kubernetes Clusters on Google Edge Cloud deployments.",
+  "client_documentation": "https://cloud.google.com/java/docs/reference/google-cloud-distributedcloudedge/latest/overview",
+  "release_level": "stable",
+  "transport": "grpc",
+  "language": "java",
+  "repo": "googleapis/java-distributedcloudedge",
+  "repo_short": "java-distributedcloudedge",
+  "distribution_name": "com.google.cloud:google-cloud-distributedcloudedge",
+  "api_id": "distributedcloudedge.googleapis.com",
+  "library_type": "GAPIC_AUTO",
+  "requires_billing": true
+}
