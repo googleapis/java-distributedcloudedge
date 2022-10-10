@@ -200,8 +200,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockService.addResponse(expectedResponse);
 
@@ -256,8 +254,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockService.addResponse(expectedResponse);
 
@@ -312,8 +308,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -377,8 +371,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -442,8 +434,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -466,8 +456,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     FieldMask updateMask = FieldMask.newBuilder().build();
 
@@ -510,8 +498,6 @@ public class EdgeContainerClientHttpJsonTest {
               .setEndpoint("endpoint1741102485")
               .setClusterCaCertificate("clusterCaCertificate-683492737")
               .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-              .setControlPlaneVersion("controlPlaneVersion648040665")
-              .setNodeVersion("nodeVersion1155309686")
               .build();
       FieldMask updateMask = FieldMask.newBuilder().build();
       client.updateClusterAsync(cluster, updateMask).get();
@@ -813,7 +799,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockService.addResponse(expectedResponse);
 
@@ -866,7 +851,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockService.addResponse(expectedResponse);
 
@@ -921,7 +905,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -983,7 +966,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -1045,7 +1027,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -1066,7 +1047,6 @@ public class EdgeContainerClientHttpJsonTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     FieldMask updateMask = FieldMask.newBuilder().build();
 
@@ -1107,7 +1087,6 @@ public class EdgeContainerClientHttpJsonTest {
               .setNodeCount(1539922066)
               .setMachineFilter("machineFilter427190943")
               .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-              .setNodeVersion("nodeVersion1155309686")
               .build();
       FieldMask updateMask = FieldMask.newBuilder().build();
       client.updateNodePoolAsync(nodePool, updateMask).get();
@@ -1318,7 +1297,7 @@ public class EdgeContainerClientHttpJsonTest {
             .putAllLabels(new HashMap<String, String>())
             .setHostedNode("hostedNode-604250391")
             .setZone("zone3744684")
-            .setVersion("version351608024")
+            .setDisabled(true)
             .build();
     mockService.addResponse(expectedResponse);
 
@@ -1368,7 +1347,7 @@ public class EdgeContainerClientHttpJsonTest {
             .putAllLabels(new HashMap<String, String>())
             .setHostedNode("hostedNode-604250391")
             .setZone("zone3744684")
-            .setVersion("version351608024")
+            .setDisabled(true)
             .build();
     mockService.addResponse(expectedResponse);
 

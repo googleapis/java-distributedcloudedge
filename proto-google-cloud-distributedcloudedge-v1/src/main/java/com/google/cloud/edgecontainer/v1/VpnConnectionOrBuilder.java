@@ -228,7 +228,7 @@ public interface VpnConnectionOrBuilder
    * </code>
    *
    * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-   *     google/cloud/edgecontainer/v1/resources.proto;l=369
+   *     google/cloud/edgecontainer/v1/resources.proto;l=361
    * @return The enum numeric value on the wire for bgpRoutingMode.
    */
   @java.lang.Deprecated
@@ -245,7 +245,7 @@ public interface VpnConnectionOrBuilder
    * </code>
    *
    * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-   *     google/cloud/edgecontainer/v1/resources.proto;l=369
+   *     google/cloud/edgecontainer/v1/resources.proto;l=361
    * @return The bgpRoutingMode.
    */
   @java.lang.Deprecated
@@ -307,11 +307,13 @@ public interface VpnConnectionOrBuilder
    *
    *
    * <pre>
-   * Project detail of the VPC network. Required if VPC is in a different
+   * Optional. Project detail of the VPC network. Required if VPC is in a different
    * project than the cluster project.
    * </pre>
    *
-   * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+   * <code>
+   * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+   * </code>
    *
    * @return Whether the vpcProject field is set.
    */
@@ -320,11 +322,13 @@ public interface VpnConnectionOrBuilder
    *
    *
    * <pre>
-   * Project detail of the VPC network. Required if VPC is in a different
+   * Optional. Project detail of the VPC network. Required if VPC is in a different
    * project than the cluster project.
    * </pre>
    *
-   * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+   * <code>
+   * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+   * </code>
    *
    * @return The vpcProject.
    */
@@ -333,11 +337,13 @@ public interface VpnConnectionOrBuilder
    *
    *
    * <pre>
-   * Project detail of the VPC network. Required if VPC is in a different
+   * Optional. Project detail of the VPC network. Required if VPC is in a different
    * project than the cluster project.
    * </pre>
    *
-   * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+   * <code>
+   * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+   * </code>
    */
   com.google.cloud.edgecontainer.v1.VpnConnection.VpcProjectOrBuilder getVpcProjectOrBuilder();
 

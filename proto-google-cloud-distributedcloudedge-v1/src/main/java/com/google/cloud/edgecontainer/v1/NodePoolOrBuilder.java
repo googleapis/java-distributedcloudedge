@@ -300,29 +300,4 @@ public interface NodePoolOrBuilder
    */
   com.google.cloud.edgecontainer.v1.NodePool.LocalDiskEncryptionOrBuilder
       getLocalDiskEncryptionOrBuilder();
-
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The lowest release version among all worker nodes.
-   * </pre>
-   *
-   * <code>string node_version = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The nodeVersion.
-   */
-  java.lang.String getNodeVersion();
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The lowest release version among all worker nodes.
-   * </pre>
-   *
-   * <code>string node_version = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The bytes for nodeVersion.
-   */
-  com.google.protobuf.ByteString getNodeVersionBytes();
 }

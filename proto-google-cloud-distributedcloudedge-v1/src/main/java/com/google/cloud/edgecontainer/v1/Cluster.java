@@ -41,8 +41,6 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
     name_ = "";
     endpoint_ = "";
     clusterCaCertificate_ = "";
-    controlPlaneVersion_ = "";
-    nodeVersion_ = "";
   }
 
   @java.lang.Override
@@ -54,195 +52,6 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
   @java.lang.Override
   public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
     return this.unknownFields;
-  }
-
-  private Cluster(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-          case 18:
-            {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (createTime_ != null) {
-                subBuilder = createTime_.toBuilder();
-              }
-              createTime_ =
-                  input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(createTime_);
-                createTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 26:
-            {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (updateTime_ != null) {
-                subBuilder = updateTime_.toBuilder();
-              }
-              updateTime_ =
-                  input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(updateTime_);
-                updateTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 34:
-            {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                labels_ =
-                    com.google.protobuf.MapField.newMapField(LabelsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String> labels__ =
-                  input.readMessage(
-                      LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              labels_.getMutableMap().put(labels__.getKey(), labels__.getValue());
-              break;
-            }
-          case 50:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              endpoint_ = s;
-              break;
-            }
-          case 58:
-            {
-              com.google.cloud.edgecontainer.v1.ClusterNetworking.Builder subBuilder = null;
-              if (networking_ != null) {
-                subBuilder = networking_.toBuilder();
-              }
-              networking_ =
-                  input.readMessage(
-                      com.google.cloud.edgecontainer.v1.ClusterNetworking.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(networking_);
-                networking_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 64:
-            {
-              defaultMaxPodsPerNode_ = input.readInt32();
-              break;
-            }
-          case 74:
-            {
-              com.google.cloud.edgecontainer.v1.Authorization.Builder subBuilder = null;
-              if (authorization_ != null) {
-                subBuilder = authorization_.toBuilder();
-              }
-              authorization_ =
-                  input.readMessage(
-                      com.google.cloud.edgecontainer.v1.Authorization.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(authorization_);
-                authorization_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 82:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              clusterCaCertificate_ = s;
-              break;
-            }
-          case 90:
-            {
-              com.google.cloud.edgecontainer.v1.Fleet.Builder subBuilder = null;
-              if (fleet_ != null) {
-                subBuilder = fleet_.toBuilder();
-              }
-              fleet_ =
-                  input.readMessage(
-                      com.google.cloud.edgecontainer.v1.Fleet.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fleet_);
-                fleet_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 98:
-            {
-              com.google.cloud.edgecontainer.v1.MaintenancePolicy.Builder subBuilder = null;
-              if (maintenancePolicy_ != null) {
-                subBuilder = maintenancePolicy_.toBuilder();
-              }
-              maintenancePolicy_ =
-                  input.readMessage(
-                      com.google.cloud.edgecontainer.v1.MaintenancePolicy.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(maintenancePolicy_);
-                maintenancePolicy_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 106:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              controlPlaneVersion_ = s;
-              break;
-            }
-          case 114:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              nodeVersion_ = s;
-              break;
-            }
-          default:
-            {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
@@ -853,106 +662,6 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
     return getMaintenancePolicy();
   }
 
-  public static final int CONTROL_PLANE_VERSION_FIELD_NUMBER = 13;
-  private volatile java.lang.Object controlPlaneVersion_;
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The control plane release version
-   * </pre>
-   *
-   * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The controlPlaneVersion.
-   */
-  @java.lang.Override
-  public java.lang.String getControlPlaneVersion() {
-    java.lang.Object ref = controlPlaneVersion_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      controlPlaneVersion_ = s;
-      return s;
-    }
-  }
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The control plane release version
-   * </pre>
-   *
-   * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The bytes for controlPlaneVersion.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getControlPlaneVersionBytes() {
-    java.lang.Object ref = controlPlaneVersion_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
-      controlPlaneVersion_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int NODE_VERSION_FIELD_NUMBER = 14;
-  private volatile java.lang.Object nodeVersion_;
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The lowest release version among all worker nodes. This field can be empty
-   * if the cluster does not have any worker nodes.
-   * </pre>
-   *
-   * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The nodeVersion.
-   */
-  @java.lang.Override
-  public java.lang.String getNodeVersion() {
-    java.lang.Object ref = nodeVersion_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      nodeVersion_ = s;
-      return s;
-    }
-  }
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The lowest release version among all worker nodes. This field can be empty
-   * if the cluster does not have any worker nodes.
-   * </pre>
-   *
-   * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The bytes for nodeVersion.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getNodeVersionBytes() {
-    java.lang.Object ref = nodeVersion_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
-      nodeVersion_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
   private byte memoizedIsInitialized = -1;
 
   @java.lang.Override
@@ -999,13 +708,7 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
     if (maintenancePolicy_ != null) {
       output.writeMessage(12, getMaintenancePolicy());
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(controlPlaneVersion_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 13, controlPlaneVersion_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nodeVersion_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 14, nodeVersion_);
-    }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -1054,13 +757,7 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
     if (maintenancePolicy_ != null) {
       size += com.google.protobuf.CodedOutputStream.computeMessageSize(12, getMaintenancePolicy());
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(controlPlaneVersion_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(13, controlPlaneVersion_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nodeVersion_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(14, nodeVersion_);
-    }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -1105,9 +802,7 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
     if (hasMaintenancePolicy()) {
       if (!getMaintenancePolicy().equals(other.getMaintenancePolicy())) return false;
     }
-    if (!getControlPlaneVersion().equals(other.getControlPlaneVersion())) return false;
-    if (!getNodeVersion().equals(other.getNodeVersion())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -1154,11 +849,7 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
       hash = (37 * hash) + MAINTENANCE_POLICY_FIELD_NUMBER;
       hash = (53 * hash) + getMaintenancePolicy().hashCode();
     }
-    hash = (37 * hash) + CONTROL_PLANE_VERSION_FIELD_NUMBER;
-    hash = (53 * hash) + getControlPlaneVersion().hashCode();
-    hash = (37 * hash) + NODE_VERSION_FIELD_NUMBER;
-    hash = (53 * hash) + getNodeVersion().hashCode();
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -1307,17 +998,10 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
     }
 
     // Construct using com.google.cloud.edgecontainer.v1.Cluster.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
+    private Builder() {}
 
     private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
     }
 
     @java.lang.Override
@@ -1368,10 +1052,6 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
         maintenancePolicy_ = null;
         maintenancePolicyBuilder_ = null;
       }
-      controlPlaneVersion_ = "";
-
-      nodeVersion_ = "";
-
       return this;
     }
 
@@ -1436,8 +1116,6 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
       } else {
         result.maintenancePolicy_ = maintenancePolicyBuilder_.build();
       }
-      result.controlPlaneVersion_ = controlPlaneVersion_;
-      result.nodeVersion_ = nodeVersion_;
       onBuilt();
       return result;
     }
@@ -1521,15 +1199,7 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
       if (other.hasMaintenancePolicy()) {
         mergeMaintenancePolicy(other.getMaintenancePolicy());
       }
-      if (!other.getControlPlaneVersion().isEmpty()) {
-        controlPlaneVersion_ = other.controlPlaneVersion_;
-        onChanged();
-      }
-      if (!other.getNodeVersion().isEmpty()) {
-        nodeVersion_ = other.nodeVersion_;
-        onChanged();
-      }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -1544,17 +1214,103 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.cloud.edgecontainer.v1.Cluster parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10:
+              {
+                name_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+            case 18:
+              {
+                input.readMessage(getCreateTimeFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 18
+            case 26:
+              {
+                input.readMessage(getUpdateTimeFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 26
+            case 34:
+              {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.String> labels__ =
+                    input.readMessage(
+                        LabelsDefaultEntryHolder.defaultEntry.getParserForType(),
+                        extensionRegistry);
+                internalGetMutableLabels()
+                    .getMutableMap()
+                    .put(labels__.getKey(), labels__.getValue());
+                break;
+              } // case 34
+            case 50:
+              {
+                endpoint_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 50
+            case 58:
+              {
+                input.readMessage(getNetworkingFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 58
+            case 64:
+              {
+                defaultMaxPodsPerNode_ = input.readInt32();
+
+                break;
+              } // case 64
+            case 74:
+              {
+                input.readMessage(getAuthorizationFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 74
+            case 82:
+              {
+                clusterCaCertificate_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 82
+            case 90:
+              {
+                input.readMessage(getFleetFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 90
+            case 98:
+              {
+                input.readMessage(
+                    getMaintenancePolicyFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 98
+            default:
+              {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.cloud.edgecontainer.v1.Cluster) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
 
@@ -3324,223 +3080,6 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
       return maintenancePolicyBuilder_;
     }
 
-    private java.lang.Object controlPlaneVersion_ = "";
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The control plane release version
-     * </pre>
-     *
-     * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @return The controlPlaneVersion.
-     */
-    public java.lang.String getControlPlaneVersion() {
-      java.lang.Object ref = controlPlaneVersion_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        controlPlaneVersion_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The control plane release version
-     * </pre>
-     *
-     * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @return The bytes for controlPlaneVersion.
-     */
-    public com.google.protobuf.ByteString getControlPlaneVersionBytes() {
-      java.lang.Object ref = controlPlaneVersion_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
-        controlPlaneVersion_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The control plane release version
-     * </pre>
-     *
-     * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @param value The controlPlaneVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setControlPlaneVersion(java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      controlPlaneVersion_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The control plane release version
-     * </pre>
-     *
-     * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearControlPlaneVersion() {
-
-      controlPlaneVersion_ = getDefaultInstance().getControlPlaneVersion();
-      onChanged();
-      return this;
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The control plane release version
-     * </pre>
-     *
-     * <code>string control_plane_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @param value The bytes for controlPlaneVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setControlPlaneVersionBytes(com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      controlPlaneVersion_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object nodeVersion_ = "";
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The lowest release version among all worker nodes. This field can be empty
-     * if the cluster does not have any worker nodes.
-     * </pre>
-     *
-     * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @return The nodeVersion.
-     */
-    public java.lang.String getNodeVersion() {
-      java.lang.Object ref = nodeVersion_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        nodeVersion_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The lowest release version among all worker nodes. This field can be empty
-     * if the cluster does not have any worker nodes.
-     * </pre>
-     *
-     * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @return The bytes for nodeVersion.
-     */
-    public com.google.protobuf.ByteString getNodeVersionBytes() {
-      java.lang.Object ref = nodeVersion_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8((java.lang.String) ref);
-        nodeVersion_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The lowest release version among all worker nodes. This field can be empty
-     * if the cluster does not have any worker nodes.
-     * </pre>
-     *
-     * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @param value The nodeVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNodeVersion(java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      nodeVersion_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The lowest release version among all worker nodes. This field can be empty
-     * if the cluster does not have any worker nodes.
-     * </pre>
-     *
-     * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearNodeVersion() {
-
-      nodeVersion_ = getDefaultInstance().getNodeVersion();
-      onChanged();
-      return this;
-    }
-    /**
-     *
-     *
-     * <pre>
-     * Output only. The lowest release version among all worker nodes. This field can be empty
-     * if the cluster does not have any worker nodes.
-     * </pre>
-     *
-     * <code>string node_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     *
-     * @param value The bytes for nodeVersion to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNodeVersionBytes(com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
-      nodeVersion_ = value;
-      onChanged();
-      return this;
-    }
-
     @java.lang.Override
     public final Builder setUnknownFields(final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
@@ -3573,7 +3112,18 @@ public final class Cluster extends com.google.protobuf.GeneratedMessageV3
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Cluster(input, extensionRegistry);
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
         }
       };
 

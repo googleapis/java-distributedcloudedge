@@ -247,24 +247,13 @@ public interface MachineOrBuilder
    *
    *
    * <pre>
-   * Output only. The software version of the machine.
+   * Output only. Whether the machine is disabled. If disabled, the machine is unable to
+   * enter service.
    * </pre>
    *
-   * <code>string version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+   * <code>bool disabled = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
    *
-   * @return The version.
+   * @return The disabled.
    */
-  java.lang.String getVersion();
-  /**
-   *
-   *
-   * <pre>
-   * Output only. The software version of the machine.
-   * </pre>
-   *
-   * <code>string version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-   *
-   * @return The bytes for version.
-   */
-  com.google.protobuf.ByteString getVersionBytes();
+  boolean getDisabled();
 }

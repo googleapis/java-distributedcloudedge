@@ -192,8 +192,6 @@ public class EdgeContainerClientTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockEdgeContainer.addResponse(expectedResponse);
 
@@ -242,8 +240,6 @@ public class EdgeContainerClientTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockEdgeContainer.addResponse(expectedResponse);
 
@@ -292,8 +288,6 @@ public class EdgeContainerClientTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -356,8 +350,6 @@ public class EdgeContainerClientTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -420,8 +412,6 @@ public class EdgeContainerClientTest {
             .setEndpoint("endpoint1741102485")
             .setClusterCaCertificate("clusterCaCertificate-683492737")
             .setMaintenancePolicy(MaintenancePolicy.newBuilder().build())
-            .setControlPlaneVersion("controlPlaneVersion648040665")
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -729,7 +719,6 @@ public class EdgeContainerClientTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockEdgeContainer.addResponse(expectedResponse);
 
@@ -776,7 +765,6 @@ public class EdgeContainerClientTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     mockEdgeContainer.addResponse(expectedResponse);
 
@@ -823,7 +811,6 @@ public class EdgeContainerClientTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -884,7 +871,6 @@ public class EdgeContainerClientTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -945,7 +931,6 @@ public class EdgeContainerClientTest {
             .setNodeCount(1539922066)
             .setMachineFilter("machineFilter427190943")
             .setLocalDiskEncryption(NodePool.LocalDiskEncryption.newBuilder().build())
-            .setNodeVersion("nodeVersion1155309686")
             .build();
     Operation resultOperation =
         Operation.newBuilder()
@@ -1172,7 +1157,7 @@ public class EdgeContainerClientTest {
             .putAllLabels(new HashMap<String, String>())
             .setHostedNode("hostedNode-604250391")
             .setZone("zone3744684")
-            .setVersion("version351608024")
+            .setDisabled(true)
             .build();
     mockEdgeContainer.addResponse(expectedResponse);
 
@@ -1216,7 +1201,7 @@ public class EdgeContainerClientTest {
             .putAllLabels(new HashMap<String, String>())
             .setHostedNode("hostedNode-604250391")
             .setZone("zone3744684")
-            .setVersion("version351608024")
+            .setDisabled(true)
             .build();
     mockEdgeContainer.addResponse(expectedResponse);
 

@@ -56,163 +56,6 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     return this.unknownFields;
   }
 
-  private VpnConnection(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              name_ = s;
-              break;
-            }
-          case 18:
-            {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (createTime_ != null) {
-                subBuilder = createTime_.toBuilder();
-              }
-              createTime_ =
-                  input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(createTime_);
-                createTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 26:
-            {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (updateTime_ != null) {
-                subBuilder = updateTime_.toBuilder();
-              }
-              updateTime_ =
-                  input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(updateTime_);
-                updateTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 34:
-            {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                labels_ =
-                    com.google.protobuf.MapField.newMapField(LabelsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000001;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String> labels__ =
-                  input.readMessage(
-                      LabelsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              labels_.getMutableMap().put(labels__.getKey(), labels__.getValue());
-              break;
-            }
-          case 42:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              natGatewayIp_ = s;
-              break;
-            }
-          case 48:
-            {
-              int rawValue = input.readEnum();
-
-              bgpRoutingMode_ = rawValue;
-              break;
-            }
-          case 58:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              cluster_ = s;
-              break;
-            }
-          case 66:
-            {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              vpc_ = s;
-              break;
-            }
-          case 72:
-            {
-              enableHighAvailability_ = input.readBool();
-              break;
-            }
-          case 82:
-            {
-              com.google.cloud.edgecontainer.v1.VpnConnection.Details.Builder subBuilder = null;
-              if (details_ != null) {
-                subBuilder = details_.toBuilder();
-              }
-              details_ =
-                  input.readMessage(
-                      com.google.cloud.edgecontainer.v1.VpnConnection.Details.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(details_);
-                details_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          case 90:
-            {
-              com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject.Builder subBuilder = null;
-              if (vpcProject_ != null) {
-                subBuilder = vpcProject_.toBuilder();
-              }
-              vpcProject_ =
-                  input.readMessage(
-                      com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject.parser(),
-                      extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(vpcProject_);
-                vpcProject_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          default:
-            {
-              if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-
   public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
     return com.google.cloud.edgecontainer.v1.ResourcesProto
         .internal_static_google_cloud_edgecontainer_v1_VpnConnection_descriptor;
@@ -432,14 +275,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * The service account in the VPC project configured by user. It is used to
+     * Optional. The service account in the VPC project configured by user. It is used to
      * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
      * SA is changed during/after a VPN connection is created, you need to
-     * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-     * set if |project_id| is set.
+     * remove the Cloud Router and Cloud VPN resources in |project_id|.
+     * It is in the form of
+     * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
      * </pre>
      *
-     * <code>string service_account = 2;</code>
+     * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      *
      * @return The serviceAccount.
      */
@@ -448,14 +292,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * The service account in the VPC project configured by user. It is used to
+     * Optional. The service account in the VPC project configured by user. It is used to
      * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
      * SA is changed during/after a VPN connection is created, you need to
-     * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-     * set if |project_id| is set.
+     * remove the Cloud Router and Cloud VPN resources in |project_id|.
+     * It is in the form of
+     * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
      * </pre>
      *
-     * <code>string service_account = 2;</code>
+     * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      *
      * @return The bytes for serviceAccount.
      */
@@ -494,59 +339,6 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
       return this.unknownFields;
-    }
-
-    private VpcProject(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10:
-              {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                projectId_ = s;
-                break;
-              }
-            case 18:
-              {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                serviceAccount_ = s;
-                break;
-              }
-            default:
-              {
-                if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
@@ -621,14 +413,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * The service account in the VPC project configured by user. It is used to
+     * Optional. The service account in the VPC project configured by user. It is used to
      * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
      * SA is changed during/after a VPN connection is created, you need to
-     * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-     * set if |project_id| is set.
+     * remove the Cloud Router and Cloud VPN resources in |project_id|.
+     * It is in the form of
+     * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
      * </pre>
      *
-     * <code>string service_account = 2;</code>
+     * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      *
      * @return The serviceAccount.
      */
@@ -648,14 +441,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * The service account in the VPC project configured by user. It is used to
+     * Optional. The service account in the VPC project configured by user. It is used to
      * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
      * SA is changed during/after a VPN connection is created, you need to
-     * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-     * set if |project_id| is set.
+     * remove the Cloud Router and Cloud VPN resources in |project_id|.
+     * It is in the form of
+     * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
      * </pre>
      *
-     * <code>string service_account = 2;</code>
+     * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      *
      * @return The bytes for serviceAccount.
      */
@@ -692,7 +486,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(serviceAccount_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, serviceAccount_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -707,7 +501,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(serviceAccount_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, serviceAccount_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -725,7 +519,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
 
       if (!getProjectId().equals(other.getProjectId())) return false;
       if (!getServiceAccount().equals(other.getServiceAccount())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -740,7 +534,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       hash = (53 * hash) + getProjectId().hashCode();
       hash = (37 * hash) + SERVICE_ACCOUNT_FIELD_NUMBER;
       hash = (53 * hash) + getServiceAccount().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -872,17 +666,10 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       }
 
       // Construct using com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
+      private Builder() {}
 
       private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
       }
 
       @java.lang.Override
@@ -983,7 +770,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
           serviceAccount_ = other.serviceAccount_;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -998,18 +785,43 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10:
+                {
+                  projectId_ = input.readStringRequireUtf8();
+
+                  break;
+                } // case 10
+              case 18:
+                {
+                  serviceAccount_ = input.readStringRequireUtf8();
+
+                  break;
+                } // case 18
+              default:
+                {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage =
-              (com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
 
@@ -1129,14 +941,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
        *
        *
        * <pre>
-       * The service account in the VPC project configured by user. It is used to
+       * Optional. The service account in the VPC project configured by user. It is used to
        * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
        * SA is changed during/after a VPN connection is created, you need to
-       * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-       * set if |project_id| is set.
+       * remove the Cloud Router and Cloud VPN resources in |project_id|.
+       * It is in the form of
+       * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
        * </pre>
        *
-       * <code>string service_account = 2;</code>
+       * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
        *
        * @return The serviceAccount.
        */
@@ -1155,14 +968,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
        *
        *
        * <pre>
-       * The service account in the VPC project configured by user. It is used to
+       * Optional. The service account in the VPC project configured by user. It is used to
        * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
        * SA is changed during/after a VPN connection is created, you need to
-       * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-       * set if |project_id| is set.
+       * remove the Cloud Router and Cloud VPN resources in |project_id|.
+       * It is in the form of
+       * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
        * </pre>
        *
-       * <code>string service_account = 2;</code>
+       * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
        *
        * @return The bytes for serviceAccount.
        */
@@ -1181,14 +995,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
        *
        *
        * <pre>
-       * The service account in the VPC project configured by user. It is used to
+       * Optional. The service account in the VPC project configured by user. It is used to
        * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
        * SA is changed during/after a VPN connection is created, you need to
-       * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-       * set if |project_id| is set.
+       * remove the Cloud Router and Cloud VPN resources in |project_id|.
+       * It is in the form of
+       * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
        * </pre>
        *
-       * <code>string service_account = 2;</code>
+       * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
        *
        * @param value The serviceAccount to set.
        * @return This builder for chaining.
@@ -1206,14 +1021,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
        *
        *
        * <pre>
-       * The service account in the VPC project configured by user. It is used to
+       * Optional. The service account in the VPC project configured by user. It is used to
        * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
        * SA is changed during/after a VPN connection is created, you need to
-       * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-       * set if |project_id| is set.
+       * remove the Cloud Router and Cloud VPN resources in |project_id|.
+       * It is in the form of
+       * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
        * </pre>
        *
-       * <code>string service_account = 2;</code>
+       * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
        *
        * @return This builder for chaining.
        */
@@ -1227,14 +1043,15 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
        *
        *
        * <pre>
-       * The service account in the VPC project configured by user. It is used to
+       * Optional. The service account in the VPC project configured by user. It is used to
        * create/delete Cloud Router and Cloud HA VPNs for VPN connection. If this
        * SA is changed during/after a VPN connection is created, you need to
-       * remove the Cloud Router and Cloud VPN resources in |project_id|. Must be
-       * set if |project_id| is set.
+       * remove the Cloud Router and Cloud VPN resources in |project_id|.
+       * It is in the form of
+       * service-{project_number}&#64;gcp-sa-edgecontainer.iam.gserviceaccount.com.
        * </pre>
        *
-       * <code>string service_account = 2;</code>
+       * <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
        *
        * @param value The bytes for serviceAccount to set.
        * @return This builder for chaining.
@@ -1284,7 +1101,19 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
-            return new VpcProject(input, extensionRegistry);
+            Builder builder = newBuilder();
+            try {
+              builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+              throw e.asInvalidProtocolBufferException()
+                  .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+              throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                  .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
           }
         };
 
@@ -1491,96 +1320,6 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
       return this.unknownFields;
-    }
-
-    private Details(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8:
-              {
-                int rawValue = input.readEnum();
-
-                state_ = rawValue;
-                break;
-              }
-            case 18:
-              {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                error_ = s;
-                break;
-              }
-            case 26:
-              {
-                com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter.Builder
-                    subBuilder = null;
-                if (cloudRouter_ != null) {
-                  subBuilder = cloudRouter_.toBuilder();
-                }
-                cloudRouter_ =
-                    input.readMessage(
-                        com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter
-                            .parser(),
-                        extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(cloudRouter_);
-                  cloudRouter_ = subBuilder.buildPartial();
-                }
-
-                break;
-              }
-            case 34:
-              {
-                if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                  cloudVpns_ =
-                      new java.util.ArrayList<
-                          com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                cloudVpns_.add(
-                    input.readMessage(
-                        com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn.parser(),
-                        extensionRegistry));
-                break;
-              }
-            default:
-              {
-                if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          cloudVpns_ = java.util.Collections.unmodifiableList(cloudVpns_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
@@ -1843,53 +1582,6 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         return this.unknownFields;
       }
 
-      private CloudRouter(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10:
-                {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  name_ = s;
-                  break;
-                }
-              default:
-                {
-                  if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-
       public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return com.google.cloud.edgecontainer.v1.ResourcesProto
             .internal_static_google_cloud_edgecontainer_v1_VpnConnection_Details_CloudRouter_descriptor;
@@ -1971,7 +1663,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
       @java.lang.Override
@@ -1983,7 +1675,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
       }
@@ -2000,7 +1692,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             (com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter) obj;
 
         if (!getName().equals(other.getName())) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
 
@@ -2013,7 +1705,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + NAME_FIELD_NUMBER;
         hash = (53 * hash) + getName().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
       }
@@ -2149,17 +1841,10 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
 
         // Construct using
         // com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
+        private Builder() {}
 
         private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
         }
 
         @java.lang.Override
@@ -2258,7 +1943,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             name_ = other.name_;
             onChanged();
           }
-          this.mergeUnknownFields(other.unknownFields);
+          this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
           return this;
         }
@@ -2273,19 +1958,37 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter parsedMessage = null;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 10:
+                  {
+                    name_ = input.readStringRequireUtf8();
+
+                    break;
+                  } // case 10
+                default:
+                  {
+                    if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                      done = true; // was an endgroup tag
+                    }
+                    break;
+                  } // default:
+              } // switch (tag)
+            } // while (!done)
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage =
-                (com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter)
-                    e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
+            onChanged();
+          } // finally
           return this;
         }
 
@@ -2431,7 +2134,19 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-              return new CloudRouter(input, extensionRegistry);
+              Builder builder = newBuilder();
+              try {
+                builder.mergeFrom(input, extensionRegistry);
+              } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+              } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException()
+                    .setUnfinishedMessage(builder.buildPartial());
+              } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                    .setUnfinishedMessage(builder.buildPartial());
+              }
+              return builder.buildPartial();
             }
           };
 
@@ -2515,53 +2230,6 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         return this.unknownFields;
       }
 
-      private CloudVpn(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10:
-                {
-                  java.lang.String s = input.readStringRequireUtf8();
-
-                  gateway_ = s;
-                  break;
-                }
-              default:
-                {
-                  if (!parseUnknownField(input, unknownFields, extensionRegistry, tag)) {
-                    done = true;
-                  }
-                  break;
-                }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(e)
-              .setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-
       public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return com.google.cloud.edgecontainer.v1.ResourcesProto
             .internal_static_google_cloud_edgecontainer_v1_VpnConnection_Details_CloudVpn_descriptor;
@@ -2643,7 +2311,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(gateway_)) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, gateway_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
       @java.lang.Override
@@ -2655,7 +2323,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(gateway_)) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, gateway_);
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
       }
@@ -2672,7 +2340,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             (com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn) obj;
 
         if (!getGateway().equals(other.getGateway())) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
 
@@ -2685,7 +2353,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + GATEWAY_FIELD_NUMBER;
         hash = (53 * hash) + getGateway().hashCode();
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
       }
@@ -2820,17 +2488,10 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
 
         // Construct using
         // com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
+        private Builder() {}
 
         private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
         }
 
         @java.lang.Override
@@ -2927,7 +2588,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             gateway_ = other.gateway_;
             onChanged();
           }
-          this.mergeUnknownFields(other.unknownFields);
+          this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
           return this;
         }
@@ -2942,19 +2603,37 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn parsedMessage = null;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 10:
+                  {
+                    gateway_ = input.readStringRequireUtf8();
+
+                    break;
+                  } // case 10
+                default:
+                  {
+                    if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                      done = true; // was an endgroup tag
+                    }
+                    break;
+                  } // default:
+              } // switch (tag)
+            } // while (!done)
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage =
-                (com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn)
-                    e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
+            onChanged();
+          } // finally
           return this;
         }
 
@@ -3099,7 +2778,19 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-              return new CloudVpn(input, extensionRegistry);
+              Builder builder = newBuilder();
+              try {
+                builder.mergeFrom(input, extensionRegistry);
+              } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+              } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException()
+                    .setUnfinishedMessage(builder.buildPartial());
+              } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                    .setUnfinishedMessage(builder.buildPartial());
+              }
+              return builder.buildPartial();
             }
           };
 
@@ -3365,7 +3056,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       for (int i = 0; i < cloudVpns_.size(); i++) {
         output.writeMessage(4, cloudVpns_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3388,7 +3079,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       for (int i = 0; i < cloudVpns_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream.computeMessageSize(4, cloudVpns_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3411,7 +3102,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         if (!getCloudRouter().equals(other.getCloudRouter())) return false;
       }
       if (!getCloudVpnsList().equals(other.getCloudVpnsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3434,7 +3125,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         hash = (37 * hash) + CLOUD_VPNS_FIELD_NUMBER;
         hash = (53 * hash) + getCloudVpnsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3566,19 +3257,10 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       }
 
       // Construct using com.google.cloud.edgecontainer.v1.VpnConnection.Details.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
+      private Builder() {}
 
       private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {
-          getCloudVpnsFieldBuilder();
-        }
       }
 
       @java.lang.Override
@@ -3596,10 +3278,11 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         }
         if (cloudVpnsBuilder_ == null) {
           cloudVpns_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          cloudVpns_ = null;
           cloudVpnsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -3733,7 +3416,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3748,18 +3431,63 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.google.cloud.edgecontainer.v1.VpnConnection.Details parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8:
+                {
+                  state_ = input.readEnum();
+
+                  break;
+                } // case 8
+              case 18:
+                {
+                  error_ = input.readStringRequireUtf8();
+
+                  break;
+                } // case 18
+              case 26:
+                {
+                  input.readMessage(getCloudRouterFieldBuilder().getBuilder(), extensionRegistry);
+
+                  break;
+                } // case 26
+              case 34:
+                {
+                  com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn m =
+                      input.readMessage(
+                          com.google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn.parser(),
+                          extensionRegistry);
+                  if (cloudVpnsBuilder_ == null) {
+                    ensureCloudVpnsIsMutable();
+                    cloudVpns_.add(m);
+                  } else {
+                    cloudVpnsBuilder_.addMessage(m);
+                  }
+                  break;
+                } // case 34
+              default:
+                {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage =
-              (com.google.cloud.edgecontainer.v1.VpnConnection.Details) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
 
@@ -4611,7 +4339,19 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
               com.google.protobuf.CodedInputStream input,
               com.google.protobuf.ExtensionRegistryLite extensionRegistry)
               throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Details(input, extensionRegistry);
+            Builder builder = newBuilder();
+            try {
+              builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+              throw e.asInvalidProtocolBufferException()
+                  .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+              throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                  .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
           }
         };
 
@@ -4946,7 +4686,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
    * </code>
    *
    * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-   *     google/cloud/edgecontainer/v1/resources.proto;l=369
+   *     google/cloud/edgecontainer/v1/resources.proto;l=361
    * @return The enum numeric value on the wire for bgpRoutingMode.
    */
   @java.lang.Override
@@ -4966,7 +4706,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
    * </code>
    *
    * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-   *     google/cloud/edgecontainer/v1/resources.proto;l=369
+   *     google/cloud/edgecontainer/v1/resources.proto;l=361
    * @return The bgpRoutingMode.
    */
   @java.lang.Override
@@ -5086,11 +4826,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
    *
    *
    * <pre>
-   * Project detail of the VPC network. Required if VPC is in a different
+   * Optional. Project detail of the VPC network. Required if VPC is in a different
    * project than the cluster project.
    * </pre>
    *
-   * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+   * <code>
+   * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+   * </code>
    *
    * @return Whether the vpcProject field is set.
    */
@@ -5102,11 +4844,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
    *
    *
    * <pre>
-   * Project detail of the VPC network. Required if VPC is in a different
+   * Optional. Project detail of the VPC network. Required if VPC is in a different
    * project than the cluster project.
    * </pre>
    *
-   * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+   * <code>
+   * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+   * </code>
    *
    * @return The vpcProject.
    */
@@ -5120,11 +4864,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
    *
    *
    * <pre>
-   * Project detail of the VPC network. Required if VPC is in a different
+   * Optional. Project detail of the VPC network. Required if VPC is in a different
    * project than the cluster project.
    * </pre>
    *
-   * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+   * <code>
+   * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+   * </code>
    */
   @java.lang.Override
   public com.google.cloud.edgecontainer.v1.VpnConnection.VpcProjectOrBuilder
@@ -5254,7 +5000,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     if (vpcProject_ != null) {
       output.writeMessage(11, getVpcProject());
     }
-    unknownFields.writeTo(output);
+    getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -5306,7 +5052,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     if (vpcProject_ != null) {
       size += com.google.protobuf.CodedOutputStream.computeMessageSize(11, getVpcProject());
     }
-    size += unknownFields.getSerializedSize();
+    size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
   }
@@ -5345,7 +5091,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     if (hasDetails()) {
       if (!getDetails().equals(other.getDetails())) return false;
     }
-    if (!unknownFields.equals(other.unknownFields)) return false;
+    if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
 
@@ -5388,7 +5134,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       hash = (37 * hash) + DETAILS_FIELD_NUMBER;
       hash = (53 * hash) + getDetails().hashCode();
     }
-    hash = (29 * hash) + unknownFields.hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
@@ -5537,17 +5283,10 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
     }
 
     // Construct using com.google.cloud.edgecontainer.v1.VpnConnection.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
+    private Builder() {}
 
     private Builder(com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
-      maybeForceBuilderInitialization();
-    }
-
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders) {}
     }
 
     @java.lang.Override
@@ -5731,7 +5470,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
       if (other.hasDetails()) {
         mergeDetails(other.getDetails());
       }
-      this.mergeUnknownFields(other.unknownFields);
+      this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
     }
@@ -5746,17 +5485,102 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      com.google.cloud.edgecontainer.v1.VpnConnection parsedMessage = null;
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
       try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10:
+              {
+                name_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 10
+            case 18:
+              {
+                input.readMessage(getCreateTimeFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 18
+            case 26:
+              {
+                input.readMessage(getUpdateTimeFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 26
+            case 34:
+              {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.String> labels__ =
+                    input.readMessage(
+                        LabelsDefaultEntryHolder.defaultEntry.getParserForType(),
+                        extensionRegistry);
+                internalGetMutableLabels()
+                    .getMutableMap()
+                    .put(labels__.getKey(), labels__.getValue());
+                break;
+              } // case 34
+            case 42:
+              {
+                natGatewayIp_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 42
+            case 48:
+              {
+                bgpRoutingMode_ = input.readEnum();
+
+                break;
+              } // case 48
+            case 58:
+              {
+                cluster_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 58
+            case 66:
+              {
+                vpc_ = input.readStringRequireUtf8();
+
+                break;
+              } // case 66
+            case 72:
+              {
+                enableHighAvailability_ = input.readBool();
+
+                break;
+              } // case 72
+            case 82:
+              {
+                input.readMessage(getDetailsFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 82
+            case 90:
+              {
+                input.readMessage(getVpcProjectFieldBuilder().getBuilder(), extensionRegistry);
+
+                break;
+              } // case 90
+            default:
+              {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+          } // switch (tag)
+        } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (com.google.cloud.edgecontainer.v1.VpnConnection) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
+        onChanged();
+      } // finally
       return this;
     }
 
@@ -6567,7 +6391,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      * </code>
      *
      * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-     *     google/cloud/edgecontainer/v1/resources.proto;l=369
+     *     google/cloud/edgecontainer/v1/resources.proto;l=361
      * @return The enum numeric value on the wire for bgpRoutingMode.
      */
     @java.lang.Override
@@ -6587,7 +6411,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      * </code>
      *
      * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-     *     google/cloud/edgecontainer/v1/resources.proto;l=369
+     *     google/cloud/edgecontainer/v1/resources.proto;l=361
      * @param value The enum numeric value on the wire for bgpRoutingMode to set.
      * @return This builder for chaining.
      */
@@ -6610,7 +6434,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      * </code>
      *
      * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-     *     google/cloud/edgecontainer/v1/resources.proto;l=369
+     *     google/cloud/edgecontainer/v1/resources.proto;l=361
      * @return The bgpRoutingMode.
      */
     @java.lang.Override
@@ -6635,7 +6459,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      * </code>
      *
      * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-     *     google/cloud/edgecontainer/v1/resources.proto;l=369
+     *     google/cloud/edgecontainer/v1/resources.proto;l=361
      * @param value The bgpRoutingMode to set.
      * @return This builder for chaining.
      */
@@ -6662,7 +6486,7 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      * </code>
      *
      * @deprecated google.cloud.edgecontainer.v1.VpnConnection.bgp_routing_mode is deprecated. See
-     *     google/cloud/edgecontainer/v1/resources.proto;l=369
+     *     google/cloud/edgecontainer/v1/resources.proto;l=361
      * @return This builder for chaining.
      */
     @java.lang.Deprecated
@@ -6900,11 +6724,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      *
      * @return Whether the vpcProject field is set.
      */
@@ -6915,11 +6741,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      *
      * @return The vpcProject.
      */
@@ -6936,11 +6764,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     public Builder setVpcProject(com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject value) {
       if (vpcProjectBuilder_ == null) {
@@ -6959,11 +6789,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     public Builder setVpcProject(
         com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject.Builder builderForValue) {
@@ -6980,11 +6812,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     public Builder mergeVpcProject(
         com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject value) {
@@ -7008,11 +6842,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     public Builder clearVpcProject() {
       if (vpcProjectBuilder_ == null) {
@@ -7029,11 +6865,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     public com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject.Builder
         getVpcProjectBuilder() {
@@ -7045,11 +6883,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     public com.google.cloud.edgecontainer.v1.VpnConnection.VpcProjectOrBuilder
         getVpcProjectOrBuilder() {
@@ -7065,11 +6905,13 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
      *
      *
      * <pre>
-     * Project detail of the VPC network. Required if VPC is in a different
+     * Optional. Project detail of the VPC network. Required if VPC is in a different
      * project than the cluster project.
      * </pre>
      *
-     * <code>.google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11;</code>
+     * <code>
+     * .google.cloud.edgecontainer.v1.VpnConnection.VpcProject vpc_project = 11 [(.google.api.field_behavior) = OPTIONAL];
+     * </code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
             com.google.cloud.edgecontainer.v1.VpnConnection.VpcProject,
@@ -7379,7 +7221,18 @@ public final class VpnConnection extends com.google.protobuf.GeneratedMessageV3
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-          return new VpnConnection(input, extensionRegistry);
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
         }
       };
 
